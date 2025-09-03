@@ -1,49 +1,48 @@
-/* === Design tokens === */
+/* === Design tokens (llums: blanc/beix + vermell) === */
 :root{
-  /* Colors */
-  --bg:#0b0c10;
-  --surface:#121319;
-  --elev:#171925;
-  --text:#f4f5f7;
-  --muted:#b6b7be;
-  --border:#2a2e3a;
-  --ring:#ffe2f3;
+  /* Colors base */
+  --bg:#F6F6F6;          /* fons pàgina (blanc fumat) */
+  --surface:#FFFFFF;     /* panells i targetes */
+  --elev:#FFFFFF;
+  --text:#1d1f23;        /* text principal */
+  --muted:#60636b;       /* text secundari */
+  --border:#E3E4E8;      /* línies i contorns suaus */
+  --ring:#ffd8d3;
 
-  /* Pink scale */
-  --pink-1:#ff3ea5;   /* accent */
-  --pink-2:#ff6abb;   /* hover */
-  --pink-3:#ff96cf;   /* soft */
-  --pink-ink:#1b0e17; /* text on pink */
+  /* Escala vermell */
+  --red-1:#E7473C;       /* accent principal */
+  --red-2:#FF5C4F;       /* hover */
+  --red-3:#FF8A80;       /* soft */
+  --red-ink:#ffffff;     /* text damunt vermell */
+
+  /* Tocs beix (opc.) */
+  --beige:#F0E7DE;       /* zones secundàries subtils */
 
   /* Layout */
   --max:1040px;
   --radius:18px;
   --radius-sm:12px;
   --gap:20px;
-  --section:68px;
+  --section:64px;
 
-  /* Type scale */
-  --f-xs:.88rem;
-  --f-sm:.95rem;
-  --f-base:1.04rem;
-  --f-h3:1.25rem;
-  --f-h2:1.9rem;
-  --f-h1:3.2rem;
+  /* Tipografia */
+  --f-xs:.88rem; --f-sm:.95rem; --f-base:1.04rem;
+  --f-h3:1.25rem; --f-h2:1.9rem; --f-h1:3rem;
 }
 
 /* Reset curt */
 *{box-sizing:border-box}
 html,body{margin:0}
 body{
-  background:linear-gradient(180deg,var(--bg),#0a0a0e 40%, var(--bg));
+  background:var(--bg);
   color:var(--text);
   font:400 var(--f-base)/1.6 ui-sans-serif, system-ui, Segoe UI, Inter, Roboto, Arial, sans-serif;
   -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
 }
 img{max-width:100%;height:auto;border-radius:var(--radius-sm)}
-a{color:var(--pink-2);text-decoration:none}
-a:hover{color:var(--pink-1)}
-:focus-visible{outline:2px solid var(--pink-3);outline-offset:2px}
+a{color:var(--red-1);text-decoration:none}
+a:hover{color:var(--red-2)}
+:focus-visible{outline:2px solid var(--red-3);outline-offset:2px}
 
 /* Shell */
 .container{max-width:var(--max);margin:0 auto;padding:26px}
@@ -52,23 +51,21 @@ a:hover{color:var(--pink-1)}
 /* Nav */
 .nav{
   position:sticky; top:0; z-index:40;
+  background:rgba(255,255,255,.86);
   backdrop-filter:saturate(120%) blur(8px);
-  background:color-mix(in oklab, var(--bg) 85%, transparent);
   border-bottom:1px solid var(--border);
   display:flex;gap:16px;align-items:center;padding:10px 26px;
 }
 .brand{
   display:inline-flex;align-items:center;gap:10px;padding:6px 12px;
-  background:linear-gradient(135deg,var(--pink-1),var(--pink-3));
-  color:var(--pink-ink); border-radius:999px; font-weight:800; letter-spacing:.2px;
+  background:linear-gradient(135deg,var(--red-1),var(--red-3));
+  color:var(--red-ink); border-radius:999px; font-weight:800; letter-spacing:.2px;
 }
-.nav a.link{
-  padding:6px 4px; border-radius:8px; color:var(--text);
-}
-.nav a.link[aria-current="page"]{color:var(--pink-2)}
+.nav a.link{padding:6px 6px;border-radius:8px;color:var(--text)}
+.nav a.link[aria-current="page"]{color:var(--red-1)}
 .nav .spacer{flex:1}
 .lang a{color:var(--muted);font-size:var(--f-sm)}
-.lang a:hover{color:var(--text)}
+.lang a:hover{color:#000}
 
 /* Hero */
 .h{padding:48px 0 12px}
@@ -83,52 +80,57 @@ a:hover{color:var(--pink-1)}
 
 .card{
   background:
-    linear-gradient(var(--elev),var(--elev)) padding-box,
-    linear-gradient(140deg, #2b2030, #1e1b2a 30%, #1a1f2a 60%, #2a1b26) border-box;
-  border:1px solid transparent;
+    linear-gradient(var(--surface),var(--surface)) padding-box,
+    linear-gradient(140deg, #fafafa, #fff) border-box;
+  border:1px solid var(--border);
   border-radius:var(--radius); padding:18px 18px 16px;
-  box-shadow:0 0 0 1px rgba(255,255,255,.02), 0 18px 60px rgba(0,0,0,.35);
+  box-shadow:0 10px 24px rgba(0,0,0,.06);
 }
+.card--beige{background:var(--beige)}
 .card h3{font-size:var(--f-h3);margin:0 0 8px}
 .card p{margin:0 0 12px;color:var(--muted)}
 
 /* Buttons */
 .btn{
   display:inline-flex;align-items:center;gap:8px;padding:10px 14px;
-  border:1px solid var(--border); border-radius:14px; color:var(--text); background:transparent;
+  border:1px solid var(--border); border-radius:14px; color:var(--text); background:#fff;
 }
-.btn:hover{border-color:color-mix(in oklab,var(--border),#ffffff 20%)}
+.btn:hover{border-color:#cfd2d8;background:#fff}
 .btn.primary{
-  border:none; font-weight:800; color:var(--pink-ink);
-  background:linear-gradient(135deg,var(--pink-1),var(--pink-2));
-  box-shadow:0 6px 30px rgba(255,62,165,.25);
+  border:none; font-weight:800; color:var(--red-ink);
+  background:linear-gradient(135deg,var(--red-1),var(--red-2));
+  box-shadow:0 8px 26px rgba(231,71,60,.25);
 }
-.btn.ghost{background:transparent;color:var(--pink-2);border-color:transparent}
+.btn.ghost{background:transparent;color:var(--red-1);border-color:transparent}
 
 /* Badges / tags */
-.badge{display:inline-block;font-weight:700;font-size:.8rem;
-  background:linear-gradient(135deg,var(--pink-1),var(--pink-3));
-  color:var(--pink-ink); padding:3px 10px;border-radius:999px}
+.badge{
+  display:inline-block;font-weight:700;font-size:.8rem;
+  background:linear-gradient(135deg,var(--red-1),var(--red-3));
+  color:var(--red-ink); padding:3px 10px;border-radius:999px
+}
 
 /* Filters */
 .filters{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 18px}
-.filter[aria-pressed="true"]{outline:2px solid var(--pink-2)}
+.filter[aria-pressed="true"]{outline:2px solid var(--red-2)}
 
 /* Lists */
 ul.clean{list-style:none;margin:0;padding:0}
 ul.clean li{padding:12px 0;border-bottom:1px dashed var(--border)}
 .meta{color:var(--muted);font-size:var(--f-sm)}
 
-/* Prose for long reads */
+/* Prosa per lectures llargues (sobre fons clar) */
 .prose{
-  max-width:76ch; font:400 1.06rem/1.7 ui-serif, Georgia, Cambria, "Times New Roman", serif;
+  max-width:76ch; margin:0 auto;
+  font:400 1.06rem/1.7 ui-serif, Georgia, Cambria, "Times New Roman", serif;
+  color:#222;
 }
-.prose h1,.prose h2,.prose h3{font-family:inherit}
-.prose blockquote{border-left:3px solid var(--pink-2);margin:0;padding:8px 14px;color:var(--muted)}
+.prose h1,.prose h2,.prose h3{font-family:inherit;color:#111}
+.prose blockquote{border-left:3px solid var(--red-2);margin:0;padding:8px 14px;color:#444;background:#fff}
 
 /* Footer */
-footer{border-top:1px solid var(--border);margin-top:48px;padding:26px 0;color:var(--muted);font-size:var(--f-sm)}
+footer{border-top:1px solid var(--border);margin-top:48px;padding:26px 0;color:var(--muted);font-size:var(--f-sm);background:transparent}
 
-/* Motion/contrast prefs */
+/* Preferències */
 @media (prefers-reduced-motion:reduce){*{transition:none;scroll-behavior:auto}}
-@media (prefers-contrast:more){:root{--border:#3a4051}}
+@media (prefers-contrast:more){:root{--border:#c9ccd3}}
