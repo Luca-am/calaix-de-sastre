@@ -72,6 +72,12 @@ a:hover{color:var(--red-2)}
 .h h1{font-size:var(--f-h1);line-height:1.15;margin:0 0 12px;letter-spacing:.2px}
 .h p{color:var(--muted);max-width:72ch;margin:0}
 
+/* About block under hero title */
+.about{display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap}
+.about img{flex:0 0 220px;max-width:220px;height:auto;border-radius:var(--radius)}
+.about .copy{flex:1;min-width:260px}
+@media (max-width:640px){.about img{flex-basis:100%;max-width:100%}}
+
 /* Grid + cards */
 .grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--gap)}
 .col-6{grid-column:span 6}
