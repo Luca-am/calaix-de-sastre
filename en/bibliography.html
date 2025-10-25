@@ -12,12 +12,41 @@
   <div class="spacer"></div><span class="lang"><a href="../ca/bibliography.html">CA</a> &middot; <a href="../en/bibliography.html">EN</a> &middot; <a href="../es/bibliography.html">ES</a> &middot; <a href="../fr/bibliography.html">FR</a></span>
 </nav>
 <header class="container h"><h1>Bibliography and references</h1><p>Authors, works, quotes, films and songs I recommend.</p></header>
-<section class="container">
-  <div class="grid">
-    <article class="card col-6"><h3>Book</h3><p>Author &middot; Year &middot; Short note.</p></article>
-    <article class="card col-6"><h3>Poem</h3><blockquote>&ldquo;Short quote.&rdquo;</blockquote></article>
+<section class="container bibliography">
+  <div class="bibliography__section">
+    <header class="section-header">
+      <h2>Books</h2>
+      <p class="meta">Selected readings that have stayed with me.</p>
+    </header>
+    <div class="carousel" data-carousel>
+      <button class="carousel__btn carousel__btn--prev" type="button" aria-label="Previous book" data-carousel-prev>&larr;</button>
+      <div class="carousel__viewport" id="books-en" data-carousel-track>
+        <a class="carousel__slide carousel__link" href="./bibliography/en-tu-arbol.html">
+          <img src="../assets/images/en-tu-arbol.jpg" alt="Cover of the book “En tu árbol o en el mío” by Jose Antonio Langarita" loading="lazy">
+          <span class="carousel__overlay">
+            <span class="carousel__title">En tu árbol o en el mío</span>
+            <span class="carousel__cta">Read review</span>
+          </span>
+        </a>
+      </div>
+      <button class="carousel__btn carousel__btn--next" type="button" aria-label="Next book" data-carousel-next>&rarr;</button>
+    </div>
+  </div>
+
+  <div class="bibliography__section">
+    <header class="section-header">
+      <h2>Poems</h2>
+      <p class="meta">Lines I want to revisit often.</p>
+    </header>
+    <div class="grid board">
+      <article class="card col-6">
+        <h3>Poem</h3>
+        <blockquote>&ldquo;Short quote.&rdquo;</blockquote>
+      </article>
+    </div>
   </div>
 </section>
 <footer class="container">&copy; <span id="y"></span> Calaix de Sastre</footer>
-<script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+<script src="../assets/js/main.js" defer></script>
+<script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 </body></html>

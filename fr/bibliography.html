@@ -12,12 +12,41 @@
   <div class="spacer"></div><span class="lang"><a href="../ca/bibliography.html">CA</a> &#183; <a href="../en/bibliography.html">EN</a> &#183; <a href="../es/bibliography.html">ES</a> &#183; <a href="../fr/bibliography.html">FR</a></span>
 </nav>
 <header class="container h"><h1>Bibliographie et r&#233;f&#233;rences</h1><p>Auteurs, &#339;uvres, citations, films et chansons recommand&#233;s.</p></header>
-<section class="container">
-  <div class="grid">
-    <article class="card col-6"><h3>Livre</h3><p>Auteur &#183; Ann&#233;e &#183; Note courte.</p></article>
-    <article class="card col-6"><h3>Po&#232;me</h3><blockquote>&#8220;Citation courte.&#8221;</blockquote></article>
+<section class="container bibliography">
+  <div class="bibliography__section">
+    <header class="section-header">
+      <h2>Livres</h2>
+      <p class="meta">Lectures qui m’accompagnent.</p>
+    </header>
+    <div class="carousel" data-carousel>
+      <button class="carousel__btn carousel__btn--prev" type="button" aria-label="Livre précédent" data-carousel-prev>&larr;</button>
+      <div class="carousel__viewport" id="books-fr" data-carousel-track>
+        <a class="carousel__slide carousel__link" href="./bibliography/en-tu-arbol.html">
+          <img src="../assets/images/en-tu-arbol.jpg" alt="Couverture du livre « En tu árbol o en el mío » de Jose Antonio Langarita" loading="lazy">
+          <span class="carousel__overlay">
+            <span class="carousel__title">En tu árbol o en el mío</span>
+            <span class="carousel__cta">Lire la note</span>
+          </span>
+        </a>
+      </div>
+      <button class="carousel__btn carousel__btn--next" type="button" aria-label="Livre suivant" data-carousel-next>&rarr;</button>
+    </div>
+  </div>
+
+  <div class="bibliography__section">
+    <header class="section-header">
+      <h2>Poèmes</h2>
+      <p class="meta">Vers dans lesquels je reviens souvent.</p>
+    </header>
+    <div class="grid board">
+      <article class="card col-6">
+        <h3>Poème</h3>
+        <blockquote>&#8220;Citation courte.&#8221;</blockquote>
+      </article>
+    </div>
   </div>
 </section>
 <footer class="container">&#169; <span id="y"></span> Calaix de Sastre</footer>
-<script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+<script src="../assets/js/main.js" defer></script>
+<script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 </body></html>
