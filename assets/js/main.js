@@ -42,3 +42,51 @@ document.querySelectorAll('[data-carousel]').forEach(carousel=>{
   window.addEventListener('resize',update,{passive:true});
   update();
 });
+
+// Cite buttons for Articles (APA only)
+const citeButtons = document.querySelectorAll('.cite-btn[data-citation]');
+if(citeButtons.length){
+  const copyText = async text=>{
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      await navigator.clipboard.writeText(text);
+      return true;
+    }
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.setAttribute('readonly','');
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+    const success = document.execCommand('copy');
+    document.body.removeChild(textarea);
+    return success;
+  };
+
+  const showFeedback = (btn, message)=>{
+    const original = btn.dataset.originalLabel || btn.textContent;
+    btn.dataset.originalLabel = original;
+    btn.textContent = message;
+    setTimeout(()=>{ btn.textContent = btn.dataset.originalLabel; }, 2000);
+  };
+
+  citeButtons.forEach(btn=>{
+    const url = btn.dataset.url ? new URL(btn.dataset.url, window.location.href).href : window.location.href;
+    const citation = (btn.dataset.citation || '').replace('{url}', url);
+    btn.dataset.citationFormatted = citation;
+    btn.title = citation;
+    btn.addEventListener('click',async ()=>{
+      const textToCopy = btn.dataset.citationFormatted || citation;
+      try{
+        const ok = await copyText(textToCopy);
+        if(ok){
+          showFeedback(btn, 'Cita copiada!');
+        }else{
+          alert(textToCopy);
+        }
+      }catch(_err){
+        alert(textToCopy);
+      }
+    });
+  });
+}

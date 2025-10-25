@@ -205,6 +205,8 @@ a:hover{color:var(--red-2)}
 .btn{
   display:inline-flex;align-items:center;gap:8px;padding:10px 14px;
   border:1px solid var(--border); border-radius:14px; color:var(--text); background:#fff;
+  font:500 var(--f-sm)/1.2 ui-sans-serif, system-ui, Segoe UI, Inter, Roboto, Arial, sans-serif;
+  cursor:pointer;
 }
 .btn:hover{border-color:#cfd2d8;background:#fff}
 .btn.primary{
