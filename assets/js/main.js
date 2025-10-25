@@ -43,9 +43,18 @@ document.querySelectorAll('[data-carousel]').forEach(carousel=>{
   update();
 });
 
-// Cite buttons for Articles (APA only)
-const citeButtons = document.querySelectorAll('.cite-btn[data-citation]');
-if(citeButtons.length){
+// Cite modal for Articles
+const citeButtons = document.querySelectorAll('.cite-btn[data-cite-apa][data-cite-chicago]');
+const citeModal = document.querySelector('[data-cite-modal]');
+if(citeButtons.length && citeModal){
+  const citeTexts = {
+    apa: citeModal.querySelector('[data-cite-text="apa"]'),
+    chicago: citeModal.querySelector('[data-cite-text="chicago"]')
+  };
+  const citeCopyButtons = citeModal.querySelectorAll('.cite-modal__copy');
+  const dismissTriggers = citeModal.querySelectorAll('[data-cite-dismiss]');
+  let lastFocusedButton = null;
+
   const copyText = async text=>{
     if(navigator.clipboard && navigator.clipboard.writeText){
       await navigator.clipboard.writeText(text);
@@ -63,30 +72,72 @@ if(citeButtons.length){
     return success;
   };
 
-  const showFeedback = (btn, message)=>{
-    const original = btn.dataset.originalLabel || btn.textContent;
-    btn.dataset.originalLabel = original;
-    btn.textContent = message;
-    setTimeout(()=>{ btn.textContent = btn.dataset.originalLabel; }, 2000);
+  const openModal = btn=>{
+    lastFocusedButton = btn;
+    const baseUrl = btn.dataset.url ? new URL(btn.dataset.url, window.location.href).href : window.location.href;
+    const apa = (btn.dataset.citeApa || '').replace('{url}', baseUrl);
+    const chicago = (btn.dataset.citeChicago || '').replace('{url}', baseUrl);
+    if(citeTexts.apa){citeTexts.apa.textContent = apa;}
+    if(citeTexts.chicago){citeTexts.chicago.textContent = chicago;}
+    citeCopyButtons.forEach(copyBtn=>{
+      if(copyBtn.dataset.style === 'apa'){
+        copyBtn.dataset.citation = apa;
+      }else if(copyBtn.dataset.style === 'chicago'){
+        copyBtn.dataset.citation = chicago;
+      }
+    });
+    citeModal.hidden = false;
+    citeModal.setAttribute('aria-hidden','false');
+    requestAnimationFrame(()=>{
+      citeCopyButtons[0]?.focus();
+    });
+  };
+
+  const closeModal = ()=>{
+    citeModal.hidden = true;
+    citeModal.setAttribute('aria-hidden','true');
+    lastFocusedButton?.focus();
   };
 
   citeButtons.forEach(btn=>{
-    const url = btn.dataset.url ? new URL(btn.dataset.url, window.location.href).href : window.location.href;
-    const citation = (btn.dataset.citation || '').replace('{url}', url);
-    btn.dataset.citationFormatted = citation;
-    btn.title = citation;
+    btn.addEventListener('click',()=>{
+      openModal(btn);
+    });
+  });
+
+  citeCopyButtons.forEach(btn=>{
     btn.addEventListener('click',async ()=>{
-      const textToCopy = btn.dataset.citationFormatted || citation;
+      const text = btn.dataset.citation || '';
+      if(!text) return;
       try{
-        const ok = await copyText(textToCopy);
+        const ok = await copyText(text);
         if(ok){
-          showFeedback(btn, 'Cita copiada!');
+          const original = btn.dataset.originalLabel || btn.textContent;
+          btn.dataset.originalLabel = original;
+          btn.textContent = 'Copiat!';
+          setTimeout(()=>{ btn.textContent = btn.dataset.originalLabel; }, 2000);
         }else{
-          alert(textToCopy);
+          alert(text);
         }
       }catch(_err){
-        alert(textToCopy);
+        alert(text);
       }
     });
+  });
+
+  dismissTriggers.forEach(el=>{
+    el.addEventListener('click',closeModal);
+  });
+
+  citeModal.addEventListener('click',event=>{
+    if(event.target === citeModal){
+      closeModal();
+    }
+  });
+
+  document.addEventListener('keydown',event=>{
+    if(event.key === 'Escape' && citeModal.getAttribute('aria-hidden') === 'false'){
+      closeModal();
+    }
   });
 }

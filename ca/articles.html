@@ -49,7 +49,11 @@
       <div>
         <a class="btn" href="../assets/pdfs/Ra%C3%A7a,%20antropologia%20i%20Hannah%20Arendt.pdf" download>Descarregar PDF</a>
         <a class="btn" href="../assets/pdfs/Ra%C3%A7a,%20antropologia%20i%20Hannah%20Arendt.pdf" target="_blank" rel="noopener">Visualitzar</a>
-        <button class="btn cite-btn" type="button" data-url="../assets/pdfs/Ra%C3%A7a,%20antropologia%20i%20Hannah%20Arendt.pdf" data-citation="Maragall, L. (2024). Ra&ccedil;a, antropologia i Hannah Arendt. Calaix de Sastre. {url}" title="Maragall, L. (2024). Ra&ccedil;a, antropologia i Hannah Arendt. Calaix de Sastre. {url}">Citar</button>
+        <button class="btn cite-btn" type="button"
+          data-url="../assets/pdfs/Ra%C3%A7a,%20antropologia%20i%20Hannah%20Arendt.pdf"
+          data-cite-apa="Maragall, L. A. (2024). Ra&ccedil;a, antropologia i Hannah Arendt. Calaix de Sastre. {url}"
+          data-cite-chicago="Maragall, Luca A. &ldquo;Ra&ccedil;a, antropologia i Hannah Arendt.&rdquo; Calaix de Sastre, 2024. {url}"
+          title="Citar &bull; Raça, antropologia i Hannah Arendt">Citar</button>
       </div>
     </article>
     <article class="card col-6" data-kind="academic">
@@ -58,11 +62,41 @@
       <div>
         <a class="btn" href="../assets/pdfs/M%C3%A0gia,%20religi%C3%B3%20i%20Ziggy%20Stardust.pdf" download>Descarregar PDF</a>
         <a class="btn" href="../assets/pdfs/M%C3%A0gia,%20religi%C3%B3%20i%20Ziggy%20Stardust.pdf" target="_blank" rel="noopener">Visualitzar</a>
-        <button class="btn cite-btn" type="button" data-url="../assets/pdfs/M%C3%A0gia,%20religi%C3%B3%20i%20Ziggy%20Stardust.pdf" data-citation="Maragall, L. (2024). M&agrave;gia, religi&oacute; i Ziggy Stardust. Calaix de Sastre. {url}" title="Maragall, L. (2024). M&agrave;gia, religi&oacute; i Ziggy Stardust. Calaix de Sastre. {url}">Citar</button>
+        <button class="btn cite-btn" type="button"
+          data-url="../assets/pdfs/M%C3%A0gia,%20religi%C3%B3%20i%20Ziggy%20Stardust.pdf"
+          data-cite-apa="Maragall, L. A. (2024). M&agrave;gia, religi&oacute; i Ziggy Stardust. Calaix de Sastre. {url}"
+          data-cite-chicago="Maragall, Luca A. &ldquo;M&agrave;gia, religi&oacute; i Ziggy Stardust.&rdquo; Calaix de Sastre, 2024. {url}"
+          title="Citar &bull; Màgia, religió i Ziggy Stardust">Citar</button>
       </div>
     </article>
   </div>
 </section>
+
+<div class="cite-modal" data-cite-modal hidden aria-hidden="true">
+  <div class="cite-modal__backdrop" data-cite-dismiss></div>
+  <div class="cite-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="cite-modal-title">
+    <header class="cite-modal__header">
+      <h2 id="cite-modal-title">Cita</h2>
+      <button class="cite-modal__close" type="button" data-cite-dismiss aria-label="Tanca">&times;</button>
+    </header>
+    <ul class="cite-modal__list">
+      <li>
+        <span class="cite-modal__label">APA 7</span>
+        <div class="cite-modal__content">
+          <p class="cite-modal__text" data-cite-text="apa"></p>
+          <button class="btn cite-modal__copy" type="button" data-style="apa">Copiar</button>
+        </div>
+      </li>
+      <li>
+        <span class="cite-modal__label">Chicago</span>
+        <div class="cite-modal__content">
+          <p class="cite-modal__text" data-cite-text="chicago"></p>
+          <button class="btn cite-modal__copy" type="button" data-style="chicago">Copiar</button>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
 
 <footer class="container">&copy; <span id="y"></span> Calaix de Sastre</footer>
 <script src="../assets/js/main.js"></script>
